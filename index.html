@@ -66,9 +66,14 @@
 <section id="journey" class="wrap">
   <p class="kicker">02 — THE PUJA JOURNEY</p>
   <h2 class="h2">THE FIVE <em>DAYS</em></h2>
-  <div class="journey-grid">
-    <div class="journey-media"><img id="journeyImg" src="https://images.unsplash.com/photo-1604608672516-f1b9b1d37076?q=80&w=1200&auto=format&fit=crop" alt="Durga Puja journey"/><div class="journey-progress"><span id="jProgress"></span></div></div>
-    <ol id="journeyList"></ol>
+  <div class="tl">
+    <svg class="tl-path" viewBox="0 0 100 1200" preserveAspectRatio="none" aria-hidden="true">
+      <defs><linearGradient id="tlGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a86a"/><stop offset="1" stop-color="#e23e22"/></linearGradient></defs>
+      <path id="tlBase" d="M50,0 C95,100 5,200 50,300 C95,400 5,500 50,600 C95,700 5,800 50,900 C95,1000 5,1100 50,1200" fill="none" stroke="rgba(245,239,228,.18)" stroke-width="2" stroke-dasharray="7 8" vector-effect="non-scaling-stroke"/>
+      <path id="tlProg" d="M50,0 C95,100 5,200 50,300 C95,400 5,500 50,600 C95,700 5,800 50,900 C95,1000 5,1100 50,1200" fill="none" stroke="url(#tlGrad)" stroke-width="2.5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+    </svg>
+    <div class="tl-dot" id="tlDot" aria-hidden="true"></div>
+    <ol id="journeyList" class="tl-list"></ol>
   </div>
 </section>
 
