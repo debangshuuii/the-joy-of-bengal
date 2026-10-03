@@ -3,7 +3,7 @@
 const SITE = { title: "DURGA PUJA — The City Comes Alive" };
 
 const JOURNEY = [
-  {k:"MAHALAYA", d:"The invocation — the city listens. (add date)", desc:"Dawn chants herald the countdown. Workshops quicken in Kumartuli.", img:"https://images.unsplash.com/photo-1604608672516-f1b9b1d37076?q=80&w=1200&auto=format&fit=crop"},
+  {k:"MAHALAYA", d:"10 October 2026 · The invocation — the city listens.", desc:"Dawn chants herald the countdown. Workshops quicken in Kumartuli.", img:"assets/images/mahalaya.jpg", fb:"https://images.unsplash.com/photo-1604608672516-f1b9b1d37076?q=80&w=1200&auto=format&fit=crop"},
   {k:"SHASHTI", d:"The unveiling — faces revealed. (add date)", desc:"Pandal doors open. First evening of wandering begins.", img:"https://images.unsplash.com/photo-1574607383476-f517f260d30b?q=80&w=1200&auto=format&fit=crop"},
   {k:"SAPTAMI", d:"The rhythm builds. (add date)", desc:"Dhak beats steady. Lanes fill with families and cameras.", img:"https://images.unsplash.com/photo-1558431382-27e303142255?q=80&w=1200&auto=format&fit=crop"},
   {k:"ASHTAMI", d:"The peak — devotion and light. (add date)", desc:"Anjali in the morning, pandal-hopping all night.", img:"https://images.unsplash.com/photo-1536421469767-80559bb6f5e1?q=80&w=1200&auto=format&fit=crop"},
