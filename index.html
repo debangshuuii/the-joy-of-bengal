@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DURGA PUJA — The City Comes Alive | Kolkata • West Bengal</title>
+<meta name="description" content="Five days. A thousand stories. One city transformed. A cinematic journey through Kolkata during Durga Puja — pandals, Kumartuli, heritage, food, streets, stories."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300;9..144,0,400;9..144,0,600;1,0,300&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="assets/css/style.css"/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪔</text></svg>">
+</head>
+<body>
+<div id="loader" aria-hidden="true"><div class="loader-inner"><p class="loader-kicker">KOLKATA • WEST BENGAL</p><h1>DURGA<br/>PUJA</h1><div class="loader-bar"><span></span></div></div></div>
+<div id="cursor" aria-hidden="true"><span id="cursorLabel">EXPLORE</span></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header id="nav">
+  <a href="#top" class="brand">DURGA<span>PUJA</span></a>
+  <nav class="desk" aria-label="Primary">
+    <a href="#transform">EXPERIENCE</a><a href="#destinations">DESTINATIONS</a><a href="#heritage">HERITAGE</a><a href="#art">ART</a><a href="#food">FOOD</a><a href="#stories">STORIES</a>
+  </nav>
+  <div class="nav-right"><a href="#plan" class="btn magnetic small">EXPLORE ↓</a><button id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button></div>
+</header>
+<div id="menu" aria-hidden="true">
+  <nav><a href="#transform">Experience</a><a href="#journey">Five Days</a><a href="#destinations">Destinations</a><a href="#kumartuli">Kumartuli</a><a href="#heritage">Heritage</a><a href="#food">Food</a><a href="#stories">Stories</a><a href="#plan">Plan Your Puja</a></nav>
+  <p>KOLKATA • WEST BENGAL — THE CITY COMES ALIVE</p>
+</div>
+
+<main id="top">
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-media">
+    <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1574607383476-f517f260d30b?q=80&w=1920&auto=format&fit=crop">
+      <source src="https://ik.imagekit.io/scgxglkne/Imported_Media_1080p.mp4?updatedAt=1790100000000" type="video/mp4"/>
+      <source src="assets/videos/hero.mp4" type="video/mp4"/>
+    </video>
+    <div class="hero-shade"></div>
+  </div>
+  <div class="hero-content">
+    <p class="kicker reveal">KOLKATA • WEST BENGAL</p>
+    <h1 class="display"><span class="line"><span>DURGA PUJA</span></span><span class="line italic"><span>THE CITY COMES ALIVE</span></span></h1>
+    <p class="sub reveal">Five days. A thousand stories. One city transformed.</p>
+    <div class="hero-foot"><a href="#transform" class="scroll-hint">SCROLL TO EXPLORE <i>↓</i></a><p class="hero-note">Hero: HackSpire cinematic loop • to use your own, drop file at <code>/assets/videos/hero.mp4</code></p></div>
+  </div>
+  <svg class="hero-curve" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 Q720,120 1440,40 L1440,120 L0,120 Z" fill="#0a0908"/></svg>
+</section>
+
+<!-- TRANSFORM -->
+<section id="transform" class="wrap">
+  <p class="kicker">01 — OPENING</p>
+  <h2 class="h2">WHEN THE CITY <em>TRANSFORMS</em></h2>
+  <p class="lede">For a few unforgettable days, Kolkata becomes a living canvas of light, art, sound and devotion.</p>
+  <div class="split">
+    <div class="media-frame tilt"><video data-src="assets/videos/night-kolkata.mp4" muted loop playsinline preload="none" poster="https://images.unsplash.com/photo-1558431382-27e303142255?q=80&w=1200&auto=format&fit=crop"></video><span class="tag">NIGHT • REPLACE /assets/videos/night-kolkata.mp4</span></div>
+    <div class="stats">
+      <div class="stat"><b><span class="count" data-count="5">0</span></b><span>DAYS<br/>of celebration</span></div>
+      <div class="stat"><b><span class="count" data-count="3000">0</span>+</b><span>PUJAS*<br/>across the city</span></div>
+      <div class="stat"><b>∞</b><span>STORIES<br/>in every lane</span></div>
+      <p class="fine">*Placeholder — replace with verified numbers in <code>assets/js/data.js</code>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey" class="wrap">
+  <p class="kicker">02 — THE PUJA JOURNEY</p>
+  <h2 class="h2">THE FIVE <em>DAYS</em></h2>
+  <div class="journey-grid">
+    <div class="journey-media"><img id="journeyImg" src="https://images.unsplash.com/photo-1604608672516-f1b9b1d37076?q=80&w=1200&auto=format&fit=crop" alt="Durga Puja journey"/><div class="journey-progress"><span id="jProgress"></span></div></div>
+    <ol id="journeyList"></ol>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section id="destinations" class="wrap">
+  <p class="kicker">03 — NOTABLE DESTINATIONS</p>
+  <h2 class="h2">THE HEART <em>OF PUJA</em></h2>
+  <p class="lede">Not a ranking — explore these Puja experiences across Kolkata.</p>
+  <div id="destGrid" class="dest-grid"></div>
+</section>
+
+<!-- KUMARTULI -->
+<section id="kumartuli">
+  <div class="wrap"><p class="kicker light">04 — KUMARTULI</p><h2 class="h2 light">WHERE THE GODDESS <em>TAKES FORM</em></h2>
+  <p class="lede light">Kolkata's historic clay-art quarter — where idols are shaped by hand.</p></div>
+  <div class="kuma-stage wrap">
+    <div class="kuma-media"><img id="kumaImg" src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=1200&auto=format&fit=crop" alt="Kumartuli idol making"/></div>
+    <ol id="kumaSteps" class="kuma-steps"></ol>
+  </div>
+</section>
+
+<!-- HERITAGE -->
+<section id="heritage" class="wrap">
+  <p class="kicker">05 — HERITAGE KOLKATA</p><h2 class="h2">BEYOND <em>THE PANDALS</em></h2>
+  <div id="heritGrid" class="herit-grid"></div>
+</section>
+
+<!-- ART HORIZONTAL -->
+<section id="art">
+  <div class="wrap"><p class="kicker light">06 — PANDAL ART</p><h2 class="h2 light">ART THAT EXISTS <em>FOR A FEW DAYS</em></h2><p class="lede light">Drag / scroll — full-bleed installations, light and craft.</p></div>
+  <div id="artTrack" class="art-track"></div>
+</section>
+
+<!-- NIGHT -->
+<section id="night">
+  <video data-src="assets/videos/night-kolkata.mp4" muted loop playsinline autoplay preload="none" poster="https://images.unsplash.com/photo-1536421469767-80559bb6f5e1?q=80&w=1920&auto=format&fit=crop"></video>
+  <div class="night-shade"></div>
+  <div class="wrap night-content"><p class="kicker light">07 — THE STREETS</p><h2 class="h2 light">THE CITY <em>AFTER DARK</em></h2><p class="lede light">After sunset, the city tells a different story.</p></div>
+</section>
+
+<!-- FOOD -->
+<section id="food" class="wrap">
+  <p class="kicker">08 — TASTE OF PUJA</p><h2 class="h2">TASTE <em>OF PUJA</em></h2>
+  <div class="chips" id="foodChips"></div>
+  <div id="foodGrid" class="food-grid"></div>
+</section>
+
+<!-- SOUND -->
+<section id="sound" class="wrap">
+  <div class="sound-card">
+    <div><p class="kicker light">09 — SOUND</p><h2 class="h2 light">THE SOUND <em>OF PUJA</em></h2><p class="lede light">Dhak • conch • bells • crowds. No autoplay — press play.</p>
+    <button id="audioBtn" class="btn light magnetic">[ ▶ PLAY EXPERIENCE ]</button>
+    <audio id="dhakAudio" loop preload="none"><source src="assets/audio/dhak.mp3" type="audio/mpeg"/></audio>
+    <div id="eq" class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1000&auto=format&fit=crop" alt="Dhak drums"/>
+  </div>
+</section>
+
+<!-- MAP -->
+<section id="mapSec" class="wrap">
+  <p class="kicker">10 — MAP</p><h2 class="h2">EXPLORE <em>KOLKATA</em></h2>
+  <div class="chips" id="mapChips"><button data-cat="all" class="on">All</button><button data-cat="pandal">Pandals</button><button data-cat="heritage">Heritage</button><button data-cat="food">Food</button><button data-cat="craft">Kumartuli</button></div>
+  <div id="map"></div>
+  <p class="fine">Illustrative locations • OpenStreetMap via Leaflet — no API key. Edit in <code>data.js → PLACES</code>.</p>
+</section>
+
+<!-- PLAN -->
+<section id="plan" class="wrap">
+  <p class="kicker">11 — PLAN YOUR PUJA</p><h2 class="h2">PLAN <em>YOUR PUJA</em></h2>
+  <div class="plan-box">
+    <label>Date <select id="pDate"><option>Saptami</option><option>Ashtami</option><option>Navami</option><option>Dashami</option></select></label>
+    <label>Area <select id="pArea"><option>North Kolkata</option><option>South Kolkata</option><option>Central</option></select></label>
+    <label>Interest <select id="pInt"><option>Pandals</option><option>Heritage</option><option>Food</option><option>Photography</option><option>Art</option></select></label>
+    <button id="pGo" class="btn magnetic">GENERATE ROUTE</button>
+  </div>
+  <ol id="pOut" class="route"></ol>
+  <p class="fine">Illustrative route only — not live navigation.</p>
+</section>
+
+<!-- ARCHIVE -->
+<section id="archive" class="wrap">
+  <p class="kicker">12 — ARCHIVE</p><h2 class="h2">THE PUJA <em>ARCHIVE</em></h2>
+  <div id="archGrid" class="masonry"></div>
+</section>
+
+<!-- STORIES -->
+<section id="stories" class="wrap">
+  <p class="kicker">13 — STORIES</p><h2 class="h2">PUJA <em>STORIES</em></h2>
+  <div id="storyGrid" class="story-grid"></div>
+</section>
+
+<!-- FINALE -->
+<section id="finale">
+  <h2 class="display small">SEE YOU<br/><em>IN KOLKATA</em></h2>
+  <p>DURGA PUJA • KOLKATA • WEST BENGAL</p>
+  <a href="#top" class="btn light magnetic">EXPLORE AGAIN ↑</a>
+  <p class="fade-end">Until the city comes alive again.</p>
+</section>
+</main>
+
+<footer><p>THE JOY OF BENGAL — cinematic concept • Replace all media in <code>/assets</code> • Edit content in <code>assets/js/data.js</code></p></footer>
+
+<div id="modal" aria-hidden="true"><div class="modal-card"><button id="modalX" aria-label="Close">✕</button><img id="mImg" alt=""/><div><h3 id="mTitle"></h3><p id="mLoc" class="kicker"></p><p id="mDesc"></p></div></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+(()=>{const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// loader
+addEventListener('load',()=>setTimeout(()=>$('#loader').classList.add('done'),600));setTimeout(()=>$('#loader').classList.add('done'),3500);
+// Lenis smooth
+let lenis=null;try{if(!reduced&&window.Lenis){lenis=new Lenis({smoothWheel:true});const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)};requestAnimationFrame(raf);}}catch(e){}
+// nav
+const nav=$('#nav');addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+const menu=$('#menu'),mBtn=$('#menuBtn');mBtn.onclick=()=>{const o=menu.classList.toggle('open');mBtn.setAttribute('aria-expanded',o);menu.setAttribute('aria-hidden',!o);};menu.querySelectorAll('a').forEach(a=>a.onclick=()=>menu.classList.remove('open'));
+// cursor — delegated so ALL links/cards (including dynamically added) show it
+const cur=$('#cursor'),cl=$('#cursorLabel');if(matchMedia('(pointer:fine)').matches){addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';},{passive:true});const sel='a,button,.dest,.story,.food,.herit,.magnetic,select';document.addEventListener('mouseover',e=>{const t=e.target.closest(sel);if(t){cur.classList.add('big');cl.textContent=t.dataset.cursor||'EXPLORE';}});document.addEventListener('mouseout',e=>{if(e.target.closest(sel))cur.classList.remove('big');});}
+// reveal + lazy video
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');const v=e.target.querySelector?.('video[data-src]')||(e.target.matches?.('video[data-src]')?e.target:null);if(v&&!v.src){v.src=v.dataset.src;v.load();v.play?.().catch(()=>{});}io.unobserve(e.target);}}),{threshold:.15});
+$$('.reveal,.split,.journey-grid,#destGrid,#heritGrid,.sound-card,.plan-box').forEach(el=>{el.classList.add('reveal');io.observe(el);});
+const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){if(v.dataset.src&&!v.getAttribute('src')){v.src=v.dataset.src;v.load();}v.play?.().catch(()=>{});}else v.pause?.();}),{threshold:.2});
+$$('video[data-src]').forEach(v=>vio.observe(v));
+// count up
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,end=+el.dataset.count;let s=null;const step=t=>{if(!s)s=t;const p=Math.min((t-s)/1400,1);el.textContent=Math.floor(end*(p));if(p<1)requestAnimationFrame(step);else el.textContent=end.toLocaleString('en-IN');};requestAnimationFrame(step);cio.unobserve(el);}),{threshold:.5});
+$$('.count').forEach(el=>cio.observe(el));
+// journey
+const jl=$('#journeyList'),ji=$('#journeyImg');JOURNEY.forEach((j,i)=>{const li=document.createElement('li');li.innerHTML=`<small>0${i+1}</small><h3>${j.k}</h3><p style="color:var(--gold);font-size:.8rem;letter-spacing:.15em">${j.d}</p><p style="color:var(--muted)">${j.desc}</p>`;jl.appendChild(li);});
+const jItems=$$('#journeyList li');const jio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){jItems.forEach(x=>x.classList.remove('on'));e.target.classList.add('on');const i=jItems.indexOf(e.target);ji.src=JOURNEY[i].img;$('#jProgress').style.width=((i+1)/JOURNEY.length*100)+'%';}}),{rootMargin:'-40% 0px -40% 0px'});jItems.forEach(li=>jio.observe(li));
+// destinations
+const dg=$('#destGrid');DESTINATIONS.forEach(d=>{const el=document.createElement('article');el.className='dest';el.dataset.cursor='VIEW';el.innerHTML=`<div class="ph"><img loading="lazy" src="${d.img}" alt="${d.name}"/></div><div class="body"><span class="pill">${d.cat}</span><h3>${d.name}</h3><p>${d.loc}</p><p>${d.desc}</p></div>`;el.onclick=()=>openModal(d.name,d.loc,d.desc,d.img);dg.appendChild(el);
+el.addEventListener('mousemove',e=>{if(reduced)return;const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform=`perspective(800px) rotateY(${x*10}deg) rotateX(${-y*10}deg) translateY(-4px)`;});el.addEventListener('mouseleave',()=>el.style.transform='');});
+// kuma
+const ks=$('#kumaSteps'),ki=$('#kumaImg');KUMA_STEPS.forEach(s=>{const li=document.createElement('li');li.innerHTML=`<h3>${s.t}</h3><p>${s.d}</p>`;ks.appendChild(li);});
+const kItems=$$('#kumaSteps li');const kio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){kItems.forEach(x=>x.classList.remove('on'));e.target.classList.add('on');ki.src=KUMA_STEPS[kItems.indexOf(e.target)].img;}}),{rootMargin:'-40% 0px -40% 0px'});kItems.forEach(li=>kio.observe(li));
+// heritage
+const hg=$('#heritGrid');HERITAGE.forEach(h=>{const d=document.createElement('div');d.className='herit';d.innerHTML=`<img loading="lazy" src="${h.img}" alt="${h.n}"/><div><h4>${h.n}</h4><p>${h.d}</p></div>`;d.onclick=()=>openModal(h.n,'Kolkata',h.d,h.img);hg.appendChild(d);});
+// art
+const at=$('#artTrack');ART.forEach(a=>{const f=document.createElement('figure');f.innerHTML=`<img loading="lazy" src="${a.img}" alt="${a.t}"/><figcaption>${a.t}</figcaption>`;at.appendChild(f);});
+// food
+const fc=$('#foodChips'),fg=$('#foodGrid');['all','bhog','street','misti'].forEach((c,i)=>{const b=document.createElement('button');b.textContent=c.toUpperCase();if(!i)b.classList.add('on');b.onclick=()=>{fc.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');renderFood(c);};fc.appendChild(b);});
+function renderFood(f){fg.innerHTML='';FOODS.filter(x=>f==='all'||x.c===f).forEach(x=>{const d=document.createElement('div');d.className='food';d.innerHTML=`<img loading="lazy" src="${x.img}" alt="${x.n}"/><div><h4>${x.n}</h4><p style="color:var(--muted);font-size:.88rem">${x.d}</p></div>`;fg.appendChild(d);});}renderFood('all');
+// archive + stories
+const ag=$('#archGrid');ARCHIVE.forEach(a=>{const f=document.createElement('figure');f.innerHTML=`<img loading="lazy" src="${a.img}" alt="${a.t}"/><figcaption>${a.t} • ${a.c}</figcaption>`;ag.appendChild(f);});
+const sg=$('#storyGrid');STORIES.forEach(s=>{const d=document.createElement('div');d.className='story';d.dataset.cursor='PLAY';d.innerHTML=`<video muted loop playsinline preload="none" poster="${s.poster}" data-src="${s.video}"></video><div><h4>${s.t}</h4><p style="color:var(--muted);font-size:.88rem">${s.d}</p></div>`;const v=d.querySelector('video');vio.observe(v);d.onclick=()=>{v.paused?v.play():v.pause();};sg.appendChild(d);});
+// sound
+const ab=$('#audioBtn'),au=$('#dhakAudio');ab.onclick=()=>{if(au.paused){au.play();ab.textContent='[ ❚❚ PAUSE ]';ab.closest('.sound-card').classList.add('playing');}else{au.pause();ab.textContent='[ ▶ PLAY EXPERIENCE ]';ab.closest('.sound-card').classList.remove('playing');}};
+// modal
+const md=$('#modal');function openModal(t,l,d,img){$('#mTitle').textContent=t;$('#mLoc').textContent=l;$('#mDesc').textContent=d;$('#mImg').src=img;md.classList.add('open');md.setAttribute('aria-hidden','false');}window.openModal=openModal;$('#modalX').onclick=()=>md.classList.remove('open');md.onclick=e=>{if(e.target===md)md.classList.remove('open');};addEventListener('keydown',e=>{if(e.key==='Escape')md.classList.remove('open')});
+// map
+try{const map=L.map('map',{scrollWheelZoom:false}).setView([22.57,88.36],11);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap'}).addTo(map);let marks=[];function draw(cat){marks.forEach(m=>map.removeLayer(m));marks=[];PLACES.filter(p=>cat==='all'||p.cat===cat).forEach(p=>{marks.push(L.marker([p.lat,p.lng]).addTo(map).bindPopup(`<b>${p.n}</b><br/>${p.d}`));});}$('#mapChips').querySelectorAll('button').forEach(b=>b.onclick=()=>{$('#mapChips').querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');draw(b.dataset.cat);});draw('all');setTimeout(()=>map.invalidateSize(),800);}catch(e){$('#map').innerHTML='<p style="padding:40px">Map needs internet (Leaflet CDN).</p>';}
+// plan
+$('#pGo').onclick=()=>{const a=$('#pArea').value,i=$('#pInt').value,d=$('#pDate').value;const pool={Pandal:['College Square','Deshapriya Park','Ekdalia'],Heritage:['Sovabazar Rajbari','College Street','Prinsep Ghat'],Food:['Park Street rolls','College Street stalls','Bhog at Bagbazar'],Photography:['College Square lake','Howrah Bridge','Kumartuli lanes'],Art:['Kumartuli','Deshapriya install','Sovabazar courtyard']}[i]||['College Square','Kumartuli','Park Street'];
+$('#pOut').innerHTML=['MORNING — Kumartuli (idol-making, soft light)',`AFTERNOON — ${pool[1]} (${a}, ${d})`,`EVENING — ${pool[0]} (lights on)`,`NIGHT — ${pool[2]||'Street food + night walk'}`].map((t,k)=>`<li><b>${t.split(' — ')[0]}</b><br/>${t.split(' — ')[1]}</li>`).join('');};
+// magnetic + gsap
+if(!reduced){$$('.magnetic').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.28}px)`;});b.addEventListener('mouseleave',()=>b.style.transform='');});
+try{gsap.registerPlugin(ScrollTrigger);gsap.to('.hero-content',{yPercent:-14,opacity:.25,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+gsap.utils.toArray('.h2').forEach(h=>gsap.from(h,{y:40,opacity:0,duration:1,ease:'power2.out',scrollTrigger:{trigger:h,start:'top 88%'}}));}catch(e){}}
+})();
