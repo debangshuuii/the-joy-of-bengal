@@ -20,5 +20,5 @@ JOURNEY, DESTINATIONS, KUMA_STEPS, HERITAGE, ART, FOODS, STORIES, ARCHIVE, PLACE
 npx serve .  → open http://localhost:3000
 or VS Code → Live Server on index.html
 
-## Effects included (HackSpire-style)
+## Effects included 
 Loader, Lenis smooth scroll, GSAP parallax, magnetic buttons, custom cursor EXPLORE/VIEW/PLAY, curved hero divider, count-up stats, sticky scroll-media swap (5 days + Kumartuli CLAY→GODDESS), 3D tilt cards, horizontal art scroll, night video, food filter, Leaflet map (no API key), plan-your-puja generator, masonry archive, video stories, finale fade, reduced-motion + lazy video.
