@@ -8,7 +8,7 @@ const JOURNEY = [
   {k:"SAPTAMI", d:"18 October 2026 · The rhythm builds.", desc:"Dhak beats steady. Lanes fill with families and cameras.", img:"assets/images/saptami.jpg", fb:"https://images.unsplash.com/photo-1558431382-27e303142255?q=80&w=1200&auto=format&fit=crop"},
   {k:"ASHTAMI", d:"19 October 2026 · The peak — devotion and light.", desc:"Anjali in the morning, pandal-hopping all night.", img:"https://media.istockphoto.com/id/1044388312/photo/priest-worshipping-goddess-durga-durga-puja-festival-celebration.jpg?s=612x612&w=0&k=20&c=2gSi9xnnQhHWBxKKHREP9t4xEF70Mg4HoQwoeHEl6GU=", fb:"https://images.unsplash.com/photo-1536421469767-80559bb6f5e1?q=80&w=1200&auto=format&fit=crop"},
   {k:"NAVAMI", d:"20 October 2026 · The celebration.", desc:"Food, friends, last long walks through lit streets.", img:"https://files.prokerala.com/news/photos/imgs/1024/visitors-crowd-at-a-puja-pandal-on-the-ninth-day-1452798.jpg", fb:"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1200&auto=format&fit=crop"},
-  {k:"DASHAMI", d:"21 October 2026 · The farewell — Bhashan.", desc:"Sindur, drums, procession to the ghats. Until next year.", img:"https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=1200&auto=format&fit=crop"},
+  {k:"DASHAMI", d:"21 October 2026 · The farewell — Bhashan.", desc:"Sindur, drums, procession to the ghats. Until next year.", img:"https://cdn.britannica.com/09/277409-050-1427AAE9/Idol-Of-Goddess-Durga-Immersed-In-Mahananda-River-During-Vijaya-Dashami-Dussehra-Festival-In-Siliguri.jpg?w=1000", fb:"https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=1200&auto=format&fit=crop"},
 ];
 
 const DESTINATIONS = [
