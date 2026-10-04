@@ -7,7 +7,7 @@ const JOURNEY = [
   {k:"SHASHTI", d:"16 October 2026 · The unveiling — faces revealed.", desc:"Pandal doors open. First evening of wandering begins.", img:"assets/images/shasthi.jpg", fb:"https://images.unsplash.com/photo-1574607383476-f517f260d30b?q=80&w=1200&auto=format&fit=crop"},
   {k:"SAPTAMI", d:"18 October 2026 · The rhythm builds.", desc:"Dhak beats steady. Lanes fill with families and cameras.", img:"assets/images/saptami.jpg", fb:"https://images.unsplash.com/photo-1558431382-27e303142255?q=80&w=1200&auto=format&fit=crop"},
   {k:"ASHTAMI", d:"19 October 2026 · The peak — devotion and light.", desc:"Anjali in the morning, pandal-hopping all night.", img:"assets/images/ashtami.jpg", fb:"https://images.unsplash.com/photo-1536421469767-80559bb6f5e1?q=80&w=1200&auto=format&fit=crop"},
-  {k:"NAVAMI", d:"20 October 2026 · The celebration.", desc:"Food, friends, last long walks through lit streets.", img:"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1200&auto=format&fit=crop"},
+  {k:"NAVAMI", d:"20 October 2026 · The celebration.", desc:"Food, friends, last long walks through lit streets.", img:"assets/images/navami.jpg", fb:"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1200&auto=format&fit=crop"},
   {k:"DASHAMI", d:"21 October 2026 · The farewell — Bhashan.", desc:"Sindur, drums, procession to the ghats. Until next year.", img:"https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=1200&auto=format&fit=crop"},
 ];
 
